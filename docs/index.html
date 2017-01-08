@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Cookmarks Lightroom Plugin</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="https://ickc.github.io/markdown-latex-css/css/common.css">
+  <link rel="stylesheet" href="https://ickc.github.io/markdown-latex-css/fonts/fonts.css">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header>
+<h1 class="title">Cookmarks Lightroom Plugin</h1>
+<p class="subtitle">Relative adjustment of develop settings - presets via bookmarks.</p>
+<p class="date">January  8, 2017</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#introduction"><span class="toc-section-number">1</span> Introduction</a><ul>
+<li><a href="#featuring"><span class="toc-section-number">1.1</span> Featuring:</a></li>
+<li><a href="#system-requirements"><span class="toc-section-number">1.2</span> System Requirements</a></li>
+<li><a href="#cookmarks-faq-frequently-asked-questions"><span class="toc-section-number">1.3</span> Cookmarks FAQ (Frequently Asked Questions)</a></li>
+<li><a href="#cookmark-url-syntax"><span class="toc-section-number">1.4</span> Cookmark URL syntax</a></li>
+<li><a href="#how-to-create-a-cookmark"><span class="toc-section-number">1.5</span> How to create a cookmark</a></li>
+</ul></li>
+<li><a href="#cookmark-links-for-adjusting-selected-photos-in-lightroom"><span class="toc-section-number">2</span> Cookmark Links (for adjusting selected photos in Lightroom)</a><ul>
+<li><a href="#special"><span class="toc-section-number">2.1</span> Special</a></li>
+<li><a href="#basics"><span class="toc-section-number">2.2</span> Basics</a></li>
+<li><a href="#tone-pv2012"><span class="toc-section-number">2.3</span> Tone PV2012</a></li>
+<li><a href="#color"><span class="toc-section-number">2.4</span> Color</a></li>
+<li><a href="#blackwhite"><span class="toc-section-number">2.5</span> Black&amp;White</a></li>
+<li><a href="#split-toning"><span class="toc-section-number">2.6</span> Split Toning</a></li>
+<li><a href="#detail"><span class="toc-section-number">2.7</span> Detail</a></li>
+<li><a href="#effects"><span class="toc-section-number">2.8</span> Effects</a></li>
+<li><a href="#tonecolor-combos"><span class="toc-section-number">2.9</span> Tone+Color Combos</a></li>
+<li><a href="#pv201003"><span class="toc-section-number">2.10</span> PV2010/03</a></li>
+</ul></li>
+<li><a href="#cookmarks-revision-history"><span class="toc-section-number">3</span> Cookmarks Revision History</a><ul>
+<li><a href="#version-2.1-released-2012-07-31"><span class="toc-section-number">3.1</span> Version 2.1, released 2012-07-31</a></li>
+<li><a href="#version-2.0-released-2012-05-04"><span class="toc-section-number">3.2</span> Version 2.0, released 2012-05-04</a></li>
+<li><a href="#version-1.3-released-2012-05-02"><span class="toc-section-number">3.3</span> Version 1.3, released 2012-05-02</a></li>
+<li><a href="#version-1.2-released-2012-05-01"><span class="toc-section-number">3.4</span> Version 1.2, released 2012-05-01</a></li>
+<li><a href="#version-1.1-released-2012-04-30"><span class="toc-section-number">3.5</span> Version 1.1, released 2012-04-30</a></li>
+<li><a href="#version-1.0-released-2012-03-26"><span class="toc-section-number">3.6</span> Version 1.0, released 2012-03-26</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="introduction"><span class="header-section-number">1</span> Introduction</h1>
+<p>You can use your browser to adjust photos in Lightroom, by clicking on links or bookmarks. Unconventional perhaps, but very useful indeed…</p>
+<h2 id="featuring"><span class="header-section-number">1.1</span> Featuring:</h2>
+<ul>
+<li><strong>Supports all develop settings</strong> except for point curves and locals.</li>
+<li><strong>Any adjustment amount</strong>, small or large…</li>
+<li><strong>Absolute adjustments</strong> can be mixed in too.</li>
+<li><strong>User-friendly URL generator</strong> for on-the-fly adjustments - can be bookmarked for reuse in the future.</li>
+</ul>
+<h2 id="system-requirements"><span class="header-section-number">1.2</span> System Requirements</h2>
+<ul>
+<li><strong>Lightroom 4</strong></li>
+<li><strong>Works equally well on Mac or Windows.</strong></li>
+</ul>
+<p><strong><em>See the readme file after downloading for usage and other notes.</em></strong></p>
+<h2 id="cookmarks-faq-frequently-asked-questions"><span class="header-section-number">1.3</span> Cookmarks FAQ (Frequently Asked Questions)</h2>
+<p><strong>(no particular order)</strong></p>
+<hr />
+<p>These FAQs come partly from users, and partly from my imagination. Please let me know if there are errors or omissions in this FAQ - thanks.</p>
+<p>NOTE: The following Q&amp;A’s assume that the plugin is working as I expect… If, after your best effort, still “no go”, please let me know.</p>
+<hr />
+<p><span class="question">Question:</span> Why would I ever need or want such a thing as Cookmarks?</p>
+<p><span class="answer">Answer:</span></p>
+<ul>
+<li>Cookmarks allow you to make relative adjustments to your photos, like Lightroom’s Quick Develop, except:
+<ul>
+<li>It supports all settings.</li>
+<li>You can adjust settings by any amount.</li>
+<li>Does not require the Library module.</li>
+<li>Multiple adjustments can be saved for future use - like presets, except stored/used/organized via your browser’s bookmark/favorites feature.</li>
+</ul></li>
+<li>Cookmarks also supports mixing of absolute and relative adjustments, so you can set one or more thing absolutely along with making relative adjustments to other things.</li>
+</ul>
+<hr />
+<p><span class="question">Question:</span> How does it work?</p>
+<p><span class="answer">Answer:</span> Lightroom plugins can handle URL’s that are issued using the ‘lightroom’ protocol. So the cookmarks plugin gets all the develop setting adjustments from lightroom URLs issued via your browser, and applys them to selected photo(s).</p>
+<hr />
+<p><span class="question">Question:</span> How do I get started?</p>
+<p><span class="answer">Answer:</span> At some point, I may post some bookmarks for you to import. For now, simply create a bookmark and enter an appropriate URL - see below for syntax, examples, and a bunch of ready-made links you can bookmark and optionally modify. Also, the cookmarks plugin has an item on the file menu for creating the location (URL) to be used in cookin’ bookmarks.</p>
+<hr />
+<p><span class="question">Question:</span> How to create a custom bookmark in my browser?</p>
+<p><span class="answer">Answer:</span> Since there is no page to bookmark, you have to create the bookmark using the context menu or equivalent. For example, in Firefox:</p>
+<ol>
+<li>Right/ctrl-click a bookmark folder and select ‘New Bookmark’.</li>
+<li>‘Name’ can be whatever you like.</li>
+<li>‘Location’ is the URL.</li>
+</ol>
+<hr />
+<p><span class="question">Question:</span> What does “Queue full” mean?</p>
+<p><span class="answer">Answer:</span> If you click a bookmark, while cookmarks is still busy with the previous request, the incoming URL is put in a queue, if there’s room. If no room in the queue, then you’ll see the above warning - remedy is to wait a moment, then try again.</p>
+<hr />
+<p><span class="question">Question:</span> In the advanced settings, what is format of the prefix option for the edit history?</p>
+<p><span class="answer">Answer:</span> <code>{date}{id}{time} {settings}</code>, where:</p>
+<ul>
+<li><code>{date}</code> is <code>YYMMDD</code></li>
+<li><code>{id}</code> is <code>CM</code>, meaning “CookMarks”</li>
+<li><code>{time}</code> is <code>HHMMSS</code></li>
+<li><code>{settings}</code> are the adjustments. If you can’t see them all, use a wider panel max (see tip elsewhere on this page).</li>
+</ul>
+<hr />
+<p><span class="question">Question:</span> Any other hot tips?</p>
+<p><span class="answer">Answer:</span> Yes:</p>
+<ul>
+<li>Put <code>$/locale_metric/Mac/Panel/maxWidth=900</code>/<code>$/locale_metric/Win/Panel/maxWidth=900</code> in a file named <code>TranslatedStrings.txt</code> in a subdirectory named <code>Resources/{language}</code> of the directory containing your lightroom executable, so you can open the left panel wide enough to see the entire line of cookmarks edit-history. <code>{language}</code> should be a 2-character code, e.g. <code>en</code> for “English”. Or, just use Jeffrey Friedl’s online configurator to widen…, link: <a href="http://regex.info/Lightroom/Config/" class="uri">http://regex.info/Lightroom/Config/</a></li>
+<li>Use 2 monitors:
+<ul>
+<li>Right-hand monitor for Lightroom in a window, with right-hand panel open but as narrow as possible.</li>
+<li>Extend Lightroom window leftward onto left monitor so that only the left panel is on it, at full/maximum width.</li>
+<li>On left part of left monitor, open a different browser than your default, and use it only for cookmarks, and use it as your exclusive Lightroom control panel, instead of Lightroom proper, except for tone/point curve tweaks and locals.</li>
+<li>This setup allows your image to be as large as possible during development, but with both panels open wide… - next best thing to full-screen editing.</li>
+</ul></li>
+</ul>
+<hr />
+<p><span class="question">Question:</span> What are some of Cookmarks’ limitations and what are your plans for it’s future?</p>
+<p><span class="answer">Answer:</span></p>
+<ol>
+<li>It’s a little tricky to create the URL’s - the user interface is not as sophisticated as it could be.</li>
+<li>It’s a little tricky to create the bookmarks, without a real page to bookmark.</li>
+<li>’Twould be nice to support parameterized cookmark links on this page, like for cam-cal profile or presets.</li>
+<li>Presets must be created for each magnitude of application and for reversing effects too (or use Lightroom undo/edit-history).</li>
+</ol>
+<hr />
+<h2 id="cookmark-url-syntax"><span class="header-section-number">1.4</span> Cookmark URL syntax</h2>
+<p>It’s simplest to <em>use the Cookmark URL generator on the file menu (plugin extras), so you never have to learn the cookmark url syntax</em>. But, for those do-it-yerself’rs:</p>
+<p><code>lightroom://com.robcole.lightroom.Cookmarks/\[i\]{name}={value}&amp;\[i\]{name}={value}...</code></p>
+<p>The complete list of names is available in the drop-down list in the URL generator.</p>
+<p><em>Note: Prefix names with ‘i’ to make them incremental (relative).</em></p>
+<p><span id="examples">Examples:</span></p>
+<ul>
+<li><code>lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=5&amp;iClarity2012=-5</code>
+<ul>
+<li>Increase PV2012 contrast by 5 and reduce clarity by 5.</li>
+</ul></li>
+<li><code>lightroom://com.robcole.lightroom.Cookmarks/Contrast2012=15</code>
+<ul>
+<li>Set PV2012 contrast to 15.</li>
+</ul></li>
+<li><code>lightroom://com.robcole.lightroom.Cookmarks/Preset/Clear Edit History</code>
+<ul>
+<li>Special expression for applying a regular Lightroom develop preset.</li>
+</ul></li>
+</ul>
+<p><span class="citation" data-cites="v2.0">@v2.0</span>:</p>
+<ul>
+<li><code>lightroom://com.robcole.lightroom.Cookmarks/Multiplier/5/iContrast2012=2&amp;iClarity2012=-2</code>
+<ul>
+<li>Increase PV2012 contrast by 10 and reduce clarity by 10.</li>
+</ul></li>
+<li><code>lightroom://com.robcole.lightroom.Cookmarks/Preset/Black//White</code>
+<ul>
+<li>Apply Black/White preset. Note: if preset name has a <code>/</code> in it, you will need to “escape” it by adding an extra slash. Same goes for other things like lens profile names…</li>
+</ul></li>
+</ul>
+<p>Next section has a full complement of links you can use as is, or as examples… - of course they can be bookmarked too, er - I mean “cookmarked” ;-)</p>
+<p>Remember to try the special ‘Hello’ link below first, after installing plugin.</p>
+<h2 id="how-to-create-a-cookmark"><span class="header-section-number">1.5</span> How to create a cookmark</h2>
+<p>Reminder: Bookmarks (aka “Favorites”) are how custom cookmark develop presets are saved for re-use.</p>
+<p><code>File Menu → RC Cookmarks → Create a Cookmark</code></p>
+<ol>
+<li>Select an item</li>
+<li>Enter a value</li>
+<li>If numeric adjustment, then check the ‘Relative’ box, unless you want to make an absolute adjustment.</li>
+<li>Click ‘Add’</li>
+</ol>
+<p>When finished, copy the URL onto the clipboard and paste it into the field of your browser’s bookmark properties labeled “Location” or “URL”.</p>
+<p>Consult your browser documentation for help on creating custom bookmarks.</p>
+<p>e.g. in Firefox, you right/ctrl-click on a bookmark folder and select ‘New Bookmark’.</p>
+<p>You can also bookmark the cookmark links on this page below. To change the URL, right/ctrl-click the bookmark and choose ‘Properties’.</p>
+<h1 id="cookmark-links-for-adjusting-selected-photos-in-lightroom"><span class="header-section-number">2</span> Cookmark Links (for adjusting selected photos in Lightroom)</h1>
+<p><em>If you haven’t already done so, install cookmarks plugin and assure it is enabled.</em></p>
+<p>Note: Some links are for PV2012 only, others are for PV2010/03 only - they should be so indicated. If no indication, they should be universal.</p>
+<p><strong>Reminder: The links below are hot - If you have Lightroom running (and cookmarks plugin installed and enabled) you <em>will</em> be adjusting selected photos when you click them. There’s a prompt to warn you the first time, but after that - you’re on your own!</strong></p>
+<p>On this page, there links for several combined adjustments, as well as links for each individual adjustment except lens corrections and camera calibration. The cookmarks plugin supports lens corrections and camera calibration too - all settings except crop, orientation, and tone-curve-enable.</p>
+<p>Feel free to bookmark these as a starting point for your own cookmark presets.</p>
+<p>Note: In the right column, the +1 settings are listed.</p>
+<p><em>Due to the image-adaptive nature of PV2012, these settings sometimes do not do exactly what’s advertised without a little tweak afterward.</em></p>
+<h2 id="special"><span class="header-section-number">2.1</span> Special</h2>
+<p>Note: Always try ‘Hello’ link first, after installing cookmarks plugin…</p>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 78%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/Hello">Hello</a></td>
+<td>Verify cookmarks plugin is enabled, without modifying any photos. After clicking the ‘Hello’ link, a dialog box should pop up in Lightroom, confirming cookmarks plugin is ready for photo adjustments…</td>
+</tr>
+<tr class="even">
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/Preset/Clear%20Edit%20History">Preset: Clear Edit History</a></td>
+<td><em>In order for this to work, <strong>you must first create a preset in Lightroom named ‘Clear Edit History’</strong></em> - this is just an example of how to issue presets via cookmarks. PS - to create a “clear edit history” preset, just create a blank preset then edit with a text editor and enter ClearEditHistory = true as it’s only setting. Note: it will only clear top of edit history - not the whole thing.</td>
+</tr>
+<tr class="odd">
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/Error=For%20Sure...">Test Error Handling</a></td>
+<td>See if errors are being handled appropriately - hint: try ‘Hello’ first.</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#special">Special</a> | <a href="#basics">Basics</a> | <a href="#tone-pv2012">Tone PV2012</a> | <a href="#color">Color</a> | <a href="#blackwhite">Black&amp;White</a> | <a href="#split-toning">Split Toning</a> | <a href="#detail">Detail</a> | <a href="#effects">Effects</a> | <a href="#tonecolor-combos">Tone+Color Combos</a> | <a href="#pv201003">PV2010/03</a></p>
+<h2 id="basics"><span class="header-section-number">2.2</span> Basics</h2>
+<p>Auto Tone</p>
+<p><a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-1/AutoTone">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-.5/AutoTone">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-.3/AutoTone">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-.2/AutoTone">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-.1/AutoTone">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/.1/AutoTone">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/.2/AutoTone">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/.3/AutoTone">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/.5/AutoTone">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/1/AutoTone">+10</a></p>
+<p>Percent auto-toning: +1=10%, +10=100%</p>
+<p>Instructions: First, edit photo manually, as best you can. Then, try 10% or 20% movement toward auto-toned values (for example). If it makes it a little better, consider clicking it again… Maybe tweak a particular setting which is getting a little “off course”, then click again… - try it!</p>
+<p><em>White Balance</em></p>
+<p>Note: Temperature &amp; Tint adjustments will go much faster if already set to ‘Custom’.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 2%" />
+<col style="width: 10%" />
+<col style="width: 11%" />
+<col style="width: 10%" />
+<col style="width: 11%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 11%" />
+<col style="width: 12%" />
+<col style="width: 10%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>White Balance</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/WhiteBalance=Custom">Custom</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/WhiteBalance=As%20Shot">As Shot</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/WhiteBalance=Auto">Auto</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/WhiteBalance=Daylight">Daylight</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/WhiteBalance=Cloudy">Cloudy</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/WhiteBalance=Shade">Shade</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/WhiteBalance=Tungsten">Tungsten</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/WhiteBalance=Fluorescent">Fluorescent</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/WhiteBalance=Flash">Flash</a></td>
+</tr>
+</tbody>
+</table>
+<p><br />
+| | | | | | | | | | | | | | | |—————–|——————————————————————————–|——————————————————————————–|——————————————————————————|——————————————————————————|——————————————————————————|——————————————————————————|—————————————————————————–|—————————————————————————–|—————————————————————————–|—————————————————————————–|——————————————————————————-|——————————————————————————-|—————————-| | Temperature | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTemperature=-1500">-30</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTemperature=-500">-10</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTemperature=-250">-5</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTemperature=-150">-3</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTemperature=-100">-2</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTemperature=-50">-1</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTemperature=50">+1</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTemperature=100">+2</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTemperature=150">+3</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTemperature=250">+5</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTemperature=500">+10</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTemperature=1500">+30</a> | +temperature(50) Raw only. | | Tint | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTint=-30">-30</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTint=-10">-10</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTint=-5">-5</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTint=-3">-3</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTint=-2">-2</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTint=-1">-1</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTint=1">+1</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTint=2">+2</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTint=3">+3</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTint=5">+5</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTint=10">+10</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iTint=30">+30</a> | +tint(1) Raw only. | |   |   |   |   |   |   |   |   |   |   |   |   |   |   | | RGB Temperature | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTemperature=-30">-30</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTemperature=-10">-10</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTemperature=-5">-5</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTemperature=-3">-3</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTemperature=-2">-2</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTemperature=-1">-1</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTemperature=1">+1</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTemperature=2">+2</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTemperature=3">+3</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTemperature=5">+5</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTemperature=10">+10</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTemperature=30">+30</a> | +temperature(1) RGB only. | | RGB Tint | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTint=-30">-30</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTint=-10">-10</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTint=-5">-5</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTint=-3">-3</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTint=-2">-2</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTint=-1">-1</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTint=1">+1</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTint=2">+2</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTint=3">+3</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTint=5">+5</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTint=10">+10</a> | <a href="lightroom://com.robcole.lightroom.Cookmarks/iIncrementalTint=30">+30</a> | +tint(1) RGB only. |</p>
+<p><em>Tone PV2012</em></p>
+<table>
+<tbody>
+<tr class="odd">
+<td>Exposure</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.3">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.1">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.05">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.03">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.02">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.01">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.01">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.02">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.03">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.05">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.1">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.3">+30</a></td>
+<td>+exposure(.01)</td>
+</tr>
+<tr class="even">
+<td>Contrast</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=30">+30</a></td>
+<td>+contrast(1)</td>
+</tr>
+<tr class="odd">
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Highlights</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=30">+30</a></td>
+<td>+highlights(1)</td>
+</tr>
+<tr class="odd">
+<td>Shadows</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows2012=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows2012=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows2012=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows2012=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows2012=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows2012=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows2012=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows2012=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows2012=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows2012=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows2012=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows2012=30">+30</a></td>
+<td>+shadows(1)</td>
+</tr>
+<tr class="even">
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Whites</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=30">+30</a></td>
+<td>+whites(1)</td>
+</tr>
+<tr class="even">
+<td>Blacks</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=30">+30</a></td>
+<td>+blacks(1)</td>
+</tr>
+</tbody>
+</table>
+<p><em>Presence</em></p>
+<table>
+<tbody>
+<tr class="odd">
+<td>Clarity 2012</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=30">+30</a></td>
+<td>+clarity(1) PV2012 only.</td>
+</tr>
+<tr class="even">
+<td>Sharpness</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=30">+30</a></td>
+<td>+sharpening(1) amount.</td>
+</tr>
+<tr class="odd">
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Vibrance</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iVibrance=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iVibrance=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iVibrance=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iVibrance=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iVibrance=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iVibrance=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iVibrance=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iVibrance=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iVibrance=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iVibrance=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iVibrance=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iVibrance=30">+30</a></td>
+<td>+vibrance(1)</td>
+</tr>
+<tr class="odd">
+<td>Saturation</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturation=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturation=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturation=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturation=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturation=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturation=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturation=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturation=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturation=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturation=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturation=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturation=30">+30</a></td>
+<td>+saturation(1)</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#special">Special</a> | <a href="#basics">Basics</a> | <a href="#tone-pv2012">Tone PV2012</a> | <a href="#color">Color</a> | <a href="#blackwhite">Black&amp;White</a> | <a href="#split-toning">Split Toning</a> | <a href="#detail">Detail</a> | <a href="#effects">Effects</a> | <a href="#tonecolor-combos">Tone+Color Combos</a> | <a href="#pv201003">PV2010/03</a></p>
+<h2 id="tone-pv2012"><span class="header-section-number">2.3</span> Tone PV2012</h2>
+<p>Definitions:</p>
+<ul>
+<li>Symmetrical - Highlight and shadows values will be adjusted by the same amount, but in opposite directions, thus maintaining highlight/shadow symmetry.</li>
+</ul>
+<p><em>Symmetrical</em></p>
+<p>Exposure + Fill <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.3&amp;iHighlights2012=30&amp;iShadows2012=-30">-30</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.1&amp;iHighlights2012=10&amp;iShadows2012=-10">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.05&amp;iHighlights2012=5&amp;iShadows2012=-5">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.03&amp;iHighlights2012=3&amp;iShadows2012=-3">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.02&amp;iHighlights2012=2&amp;iShadows2012=-2">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.01&amp;iHighlights2012=1&amp;iShadows2012=-1">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.01&amp;iHighlights2012=-1&amp;iShadows2012=1">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.02&amp;iHighlights2012=-2&amp;iShadows2012=2">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.03&amp;iHighlights2012=-3&amp;iShadows2012=3">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.05&amp;iHighlights2012=-5&amp;iShadows2012=5">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.1&amp;iHighlights2012=-10&amp;iShadows2012=10">+10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.3&amp;iHighlights2012=-30&amp;iShadows2012=30">+30</a> <a href="http://web.archive.org/web/20130303033922/http://www.robcole.com/Rob/ProductsAndServices/CookmarksLrPlugin/footnote_1"></a> +exposure(.01) -highlights(1) +shadows(1)</p>
+<p>  This is the closest thing Lr4 has to Lr3 fill light. It uses +shadows to fill dark tones, +exposure to fill midtones and highlights, and -highlights to reduce highlight fill. Although it will brighten the blacks a little bit, not that much due to PV2012 design. If you are having difficulties getting enough fill this way, consider tossing in some +blacks, or reducing contrast. You can also add a local gradient to increase shadow fill. If still not enough try the tone curve, if still not enough, use locals (paint). If you could stand some more shadow detail, try clarity.</p>
+<p>Sometimes a good one to start with, when photo needs both darks &amp; mids brightened…</p>
+<p>                            Fill (Progressive) <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.3&amp;iShadows2012=-60&amp;iHighlights2012=60&amp;iBlacks2012=6">-30</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.1&amp;iShadows2012=-20&amp;iHighlights2012=20&amp;iBlacks2012=2">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.05&amp;iShadows2012=-10&amp;iHighlights2012=10&amp;iBlacks2012=1">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.03&amp;iShadows2012=-6&amp;iHighlights2012=6&amp;iBlacks2012=.6">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.02&amp;iShadows2012=-4&amp;iHighlights2012=4&amp;iBlacks2012=.4">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.01&amp;iShadows2012=-2&amp;iHighlights2012=2&amp;iBlacks2012=.2">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.01&amp;iShadows2012=2&amp;iHighlights2012=-2&amp;iBlacks2012=-.2">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.02&amp;iShadows2012=4&amp;iHighlights2012=-4&amp;iBlacks2012=-.4">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.03&amp;iShadows2012=6&amp;iHighlights2012=-6&amp;iBlacks2012=-.6">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.05&amp;iShadows2012=10&amp;iHighlights2012=-10&amp;iBlacks2012=-1">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.1&amp;iShadows2012=20&amp;iHighlights2012=-20&amp;iBlacks2012=-2">+10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.3&amp;iShadows2012=60&amp;iHighlights2012=-60&amp;iBlacks2012=-6">+30</a> +exposure(.01) +shadows(2) -highlights(2) -blacks(-.02)   Similar to ‘Exposure + Fill’, except easier on the exposure, and keeps blacks well-seated to maintain maximum intra-shadow contrast.</p>
+<p>Toss this one into the mix when you need more fill, but mids are nearly bright enough already, and blacks are becoming unclipped too much.</p>
+<p>                            Combined Fill <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-30&amp;iShadows2012=-30&amp;iHighlights2012=30">-30</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-10&amp;iShadows2012=-10&amp;iHighlights2012=10">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-5&amp;iShadows2012=-5&amp;iHighlights2012=5">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-3&amp;iShadows2012=-3&amp;iHighlights2012=3">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-2&amp;iShadows2012=-2&amp;iHighlights2012=2">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-1&amp;iShadows2012=-1&amp;iHighlights2012=1">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=1&amp;iShadows2012=1&amp;iHighlights2012=-1">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=2&amp;iShadows2012=2&amp;iHighlights2012=-2">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=3&amp;iShadows2012=3&amp;iHighlights2012=-3">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=5&amp;iShadows2012=5&amp;iHighlights2012=-5">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=10&amp;iShadows2012=10&amp;iHighlights2012=-10">+10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=30&amp;iShadows2012=30&amp;iHighlights2012=-30">+30</a> +blacks(1) +shadows(1) -highlights(1)   Fills shadows using both blacks and shadows sliders (without overbrightening highlights). This is good when your shadows have plenty of contrast already, but still need more fill.                             Bottom Drop <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=30&amp;iShadows2012=-30&amp;iHighlights2012=30">-30</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=10&amp;iShadows2012=-10&amp;iHighlights2012=10">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=5&amp;iShadows2012=-5&amp;iHighlights2012=5">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=3&amp;iShadows2012=-3&amp;iHighlights2012=3">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=2&amp;iShadows2012=-2&amp;iHighlights2012=2">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=1&amp;iShadows2012=-1&amp;iHighlights2012=1">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-1&amp;iShadows2012=1&amp;iHighlights2012=-1">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-2&amp;iShadows2012=2&amp;iHighlights2012=-2">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-3&amp;iShadows2012=3&amp;iHighlights2012=-3">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-5&amp;iShadows2012=5&amp;iHighlights2012=-5">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-10&amp;iShadows2012=10&amp;iHighlights2012=-10">+10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-30&amp;iShadows2012=30&amp;iHighlights2012=-30">+30</a> -blacks(1) +shadows(1) -highlights(1)   Drops the bottom end of the photograph down. This is good for left-shifting photo tones, without losing right end, and without over-darkening the shadows in the process.                             Contrast/Saturation <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=-90&amp;iSaturation=30">-30</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=-30&amp;iSaturation=10">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=-15&amp;iSaturation=5">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=-9&amp;iSaturation=3">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=-6&amp;iSaturation=2">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=-3&amp;iSaturation=1">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=3&amp;iSaturation=-1">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=6&amp;iSaturation=-1">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=9&amp;iSaturation=-3">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=15&amp;iSaturation=-5">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=30&amp;iSaturation=-10">+10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=90&amp;iSaturation=-30">+30</a> +contrast(3) -saturation(1)   Increase contrast without over saturating. Note: I often use this in reverse (negative values) to decrease contrast without losing saturation - for when more shadow fill and/or highlight stratification is needed, and its OK or desirable to reduce midtone contrast in the doing…                             Highlights/Shadows <a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=-30&amp;iShadows2012=30">-30</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=-10&amp;iShadows2012=10">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=-5&amp;iShadows2012=5">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=-3&amp;iShadows2012=3">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=-2&amp;iShadows2012=2">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=-1&amp;iShadows2012=1">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=1&amp;iShadows2012=-1">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=2&amp;iShadows2012=-2">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=3&amp;iShadows2012=-3">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=5&amp;iShadows2012=-5">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=10&amp;iShadows2012=-10">+10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlights2012=30&amp;iShadows2012=-30">+30</a> +highlights(1) -shadows(1)   Positive values for when other adjustments have resulted in overly reduced highlights and over-filled shadows. Negative values for the opposite.                             Clarity/Contrast <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-30&amp;iContrast2012=30&amp;iHighlights2012=-30&amp;iShadows2012=30">-30</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-10&amp;iContrast2012=10&amp;iHighlights2012=-10&amp;iShadows2012=10">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-5&amp;iContrast2012=5&amp;iHighlights2012=-5&amp;iShadows2012=5">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-3&amp;iContrast2012=3&amp;iHighlights2012=-3&amp;iShadows2012=3">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-2&amp;iContrast2012=2&amp;iHighlights2012=-2&amp;iShadows2012=2">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-1&amp;iContrast2012=1&amp;iHighlights2012=-1&amp;iShadows2012=1">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=1&amp;iContrast2012=-1&amp;iHighlights2012=1&amp;iShadows2012=-1">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=2&amp;iContrast2012=-2&amp;iHighlights2012=2&amp;iShadows2012=-2">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=3&amp;iContrast2012=-3&amp;iHighlights2012=3&amp;iShadows2012=-3">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=5&amp;iContrast2012=-5&amp;iHighlights2012=5&amp;iShadows2012=-5">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=10&amp;iContrast2012=-10&amp;iHighlights2012=10&amp;iShadows2012=-10">+10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=30&amp;iContrast2012=-30&amp;iHighlights2012=30&amp;iShadows2012=-30">+30</a> +clarity(1) -contrast(1) +highlights(1) -shadows(1)   Positive values replace global contrast with local contrast. Negative values replace clarity with global midtone contrast.                             Midtone Contrast <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=-30&amp;iHighlights2012=30&amp;iShadows2012=-30&amp;iSaturation=10">-30</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=-10&amp;iHighlights2012=10&amp;iShadows2012=-10&amp;iSaturation=3">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=-5&amp;iHighlights2012=5&amp;iShadows2012=-5&amp;iSaturation=1.7">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=-3&amp;iHighlights2012=3&amp;iShadows2012=-3&amp;iSaturation=3">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=-2&amp;iHighlights2012=2&amp;iShadows2012=-2&amp;iSaturation=.7">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=-1&amp;iHighlights2012=1&amp;iShadows2012=-1&amp;iSaturation=.3">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=1&amp;iHighlights2012=-1&amp;iShadows2012=1&amp;iSaturation=-.3">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=2&amp;iHighlights2012=-2&amp;iShadows2012=2&amp;iSaturation=-.7">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=3&amp;iHighlights2012=-3&amp;iShadows2012=3&amp;iSaturation=-1">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=5&amp;iHighlights2012=-5&amp;iShadows2012=5&amp;iSaturation=-1.7">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=10&amp;iHighlights2012=-10&amp;iShadows2012=10&amp;iSaturation=-3">+10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast2012=30&amp;iHighlights2012=-30&amp;iShadows2012=30&amp;iSaturation=-10">+30</a> +contrast(1) -highlights(1) +shadows(1) -saturation(.3)   Positive values increase midtone contrast, without overbrightening highlights or over-compressing shadows, and without over-saturating.                             Highlight extension/contrast <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-30&amp;iExposure2012=.3">-30</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-10&amp;iExposure2012=.1">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-5&amp;iExposure2012=.05">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-3&amp;iExposure2012=.03">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-2&amp;iExposure2012=.02">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-1&amp;iExposure2012=.01">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=1&amp;iExposure2012=-.01">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=2&amp;iExposure2012=-.02">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=3&amp;iExposure2012=-.03">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=5&amp;iExposure2012=-.05">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=10&amp;iExposure2012=-.1">+10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=30&amp;iExposure2012=-.3&amp;">+30</a> +whites(1) -exposure(.01)   Positive values extend/expand the highlights. There will be a corresponding reduction in midtone and shadow brightness.                             Intra-highlight contrast <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-30&amp;iExposure2012=.18&amp;iHighlights2012=12&amp;iShadows2012=-12">-30</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-10&amp;iExposure2012=.06&amp;iHighlights2012=4&amp;iShadows2012=-4">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-5&amp;iExposure2012=.03&amp;iHighlights2012=2&amp;iShadows2012=-2">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-3&amp;iExposure2012=.018&amp;iHighlights2012=1.2&amp;iShadows2012=-1.2">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-2&amp;iExposure2012=.012&amp;iHighlights2012=.8&amp;iShadows2012=-.8">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-1&amp;iExposure2012=.006&amp;iHighlights2012=.4&amp;iShadows2012=-.4">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=1&amp;iExposure2012=-.006&amp;iHighlights2012=-.4&amp;iShadows2012=.4">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=2&amp;iExposure2012=-.012&amp;iHighlights2012=-.8&amp;iShadows2012=.8">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=3&amp;iExposure2012=-.018&amp;iHighlights2012=-1.2&amp;iShadows2012=1.2">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=5&amp;iExposure2012=-.03&amp;iHighlights2012=-2&amp;iShadows2012=2">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=10&amp;iExposure2012=-.06&amp;iHighlights2012=-4&amp;iShadows2012=4">+10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=30&amp;iExposure2012=-.18&amp;iHighlights2012=-12&amp;iShadows2012=12">+30</a> +whites(1) -exposure(.006) -highlights(.4) +shadows(.4)   Extends and expands the highlights, but without the corresponding reduction in midtone and shadow brightness.                             Whites Recovery <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-30/iWhites2012=-2&amp;iExposure2012=+.01&amp;iContrast2012=1">-30</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-10/iWhites2012=-2&amp;iExposure2012=+.01&amp;iContrast2012=1">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-5/iWhites2012=-2&amp;iExposure2012=+.01&amp;iContrast2012=1">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-3/iWhites2012=-2&amp;iExposure2012=+.01&amp;iContrast2012=1">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-2/iWhites2012=-2&amp;iExposure2012=+.01&amp;iContrast2012=1">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-1/iWhites2012=-2&amp;iExposure2012=+.01&amp;iContrast2012=1">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/1/iWhites2012=-2&amp;iExposure2012=+.01&amp;iContrast2012=1">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/2/iWhites2012=-2&amp;iExposure2012=+.01&amp;iContrast2012=1">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/3/iWhites2012=-2&amp;iExposure2012=+.01&amp;iContrast2012=1">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/5/iWhites2012=-2&amp;iExposure2012=+.01&amp;iContrast2012=1">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/10/iWhites2012=-2&amp;iExposure2012=+.01&amp;iContrast2012=1">+10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/30/iWhites2012=-2&amp;iExposure2012=+.01&amp;iContrast2012=1">+30</a> -whites(2) +exposure(.01) +contrast(1) Intra-whites Contrast <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-100/ParametricHighlightSplit=90&amp;iParametricHighlights=-.8&amp;iParametricLights=-.4&amp;iParametricDarks=-.2&amp;iParametricShadows=-.1&amp;iWhites2012=+.1&amp;iExposure2012=+.005&amp;iContrast2012=+.2&amp;iHighlights2012=-.1&amp;iShadows2012=+.1&amp;iBlacks2012=-.1">-30</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-33.3/ParametricHighlightSplit=90&amp;iParametricHighlights=-.8&amp;iParametricLights=-.4&amp;iParametricDarks=-.2&amp;iParametricShadows=-.1&amp;iWhites2012=+.1&amp;iExposure2012=+.005&amp;iContrast2012=+.2&amp;iHighlights2012=-.1&amp;iShadows2012=+.1&amp;iBlacks2012=-.1">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-17.7/ParametricHighlightSplit=90&amp;iParametricHighlights=-.8&amp;iParametricLights=-.4&amp;iParametricDarks=-.2&amp;iParametricShadows=-.1&amp;iWhites2012=+.1&amp;iExposure2012=+.005&amp;iContrast2012=+.2&amp;iHighlights2012=-.1&amp;iShadows2012=+.1&amp;iBlacks2012=-.1">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-10/ParametricHighlightSplit=90&amp;iParametricHighlights=-.8&amp;iParametricLights=-.4&amp;iParametricDarks=-.2&amp;iParametricShadows=-.1&amp;iWhites2012=+.1&amp;iExposure2012=+.005&amp;iContrast2012=+.2&amp;iHighlights2012=-.1&amp;iShadows2012=+.1&amp;iBlacks2012=-.1">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-6.7/ParametricHighlightSplit=90&amp;iParametricHighlights=-.8&amp;iParametricLights=-.4&amp;iParametricDarks=-.2&amp;iParametricShadows=-.1&amp;iWhites2012=+.1&amp;iExposure2012=+.005&amp;iContrast2012=+.2&amp;iHighlights2012=-.1&amp;iShadows2012=+.1&amp;iBlacks2012=-.1">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-3.3/ParametricHighlightSplit=90&amp;iParametricHighlights=-.8&amp;iParametricLights=-.4&amp;iParametricDarks=-.2&amp;iParametricShadows=-.1&amp;iWhites2012=+.1&amp;iExposure2012=+.005&amp;iContrast2012=+.2&amp;iHighlights2012=-.1&amp;iShadows2012=+.1&amp;iBlacks2012=-.1">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/3.3/ParametricHighlightSplit=90&amp;iParametricHighlights=-.8&amp;iParametricLights=-.4&amp;iParametricDarks=-.2&amp;iParametricShadows=-.1&amp;iWhites2012=+.1&amp;iExposure2012=+.005&amp;iContrast2012=+.2&amp;iHighlights2012=-.1&amp;iShadows2012=+.1&amp;iBlacks2012=-.1">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/6.7/ParametricHighlightSplit=90&amp;iParametricHighlights=-.8&amp;iParametricLights=-.4&amp;iParametricDarks=-.2&amp;iParametricShadows=-.1&amp;iWhites2012=+.1&amp;iExposure2012=+.005&amp;iContrast2012=+.2&amp;iHighlights2012=-.1&amp;iShadows2012=+.1&amp;iBlacks2012=-.1">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/10/ParametricHighlightSplit=90&amp;iParametricHighlights=-.8&amp;iParametricLights=-.4&amp;iParametricDarks=-.2&amp;iParametricShadows=-.1&amp;iWhites2012=+.1&amp;iExposure2012=+.005&amp;iContrast2012=+.2&amp;iHighlights2012=-.1&amp;iShadows2012=+.1&amp;iBlacks2012=-.1">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/17.7/ParametricHighlightSplit=90&amp;iParametricHighlights=-.8&amp;iParametricLights=-.4&amp;iParametricDarks=-.2&amp;iParametricShadows=-.1&amp;iWhites2012=+.1&amp;iExposure2012=+.005&amp;iContrast2012=+.2&amp;iHighlights2012=-.1&amp;iShadows2012=+.1&amp;iBlacks2012=-.1">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/33.3/ParametricHighlightSplit=90&amp;iParametricHighlights=-.8&amp;iParametricLights=-.4&amp;iParametricDarks=-.2&amp;iParametricShadows=-.1&amp;iWhites2012=+.1&amp;iExposure2012=+.005&amp;iContrast2012=+.2&amp;iHighlights2012=-.1&amp;iShadows2012=+.1&amp;iBlacks2012=-.1">+10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/100/ParametricHighlightSplit=90&amp;iParametricHighlights=-.8&amp;iParametricLights=-.4&amp;iParametricDarks=-.2&amp;iParametricShadows=-.1&amp;iWhites2012=+.1&amp;iExposure2012=+.005&amp;iContrast2012=+.2&amp;iHighlights2012=-.1&amp;iShadows2012=+.1&amp;iBlacks2012=-.1">+30</a> absolute adjustment of parametric tone curve: highlight split = 90, accompanied by relative adjustment of tone curve to debrighten, with upward inflection in whites. Also, a myriad of slider adjustments…   Enhances definition of whites (brightest tones of any color). Good for bright clouds, snow, waterfalls, white flowers, white wedding dresses…</p>
+<p>Consider shifting parametric midtone and shadow splitters leftward after using, to keep from losing intra-highlight contrast.</p>
+<p> </p>
+<p><em>Asymmetrical</em></p>
+<p>Extended Fill To undo it, use Lightroom proper. <a href="lightroom://com.robcole.lightroom.Cookmarks/Shadows2012=100&amp;Blacks2012=3&amp;iWhites2012=1&amp;iExposure2012=-.01&amp;iHighlights2012=-1&amp;iContrast2012=-1&amp;ParametricShadowSplit=25&amp;ParametricMidtoneSplit=50&amp;ParametricHighlightSplit=75&amp;ParametricShadows=3&amp;ParametricDarks=-6&amp;ParametricLights=-3&amp;ParametricHighlights=-1">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Shadows2012=100&amp;Blacks2012=6&amp;iWhites2012=2&amp;iExposure2012=-.02&amp;iHighlights2012=-2&amp;iContrast2012=-2&amp;ParametricShadowSplit=25&amp;ParametricMidtoneSplit=50&amp;ParametricHighlightSplit=75&amp;ParametricShadows=6&amp;ParametricDarks=-12&amp;ParametricLights=-6&amp;ParametricHighlights=-2">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Shadows2012=100&amp;Blacks2012=12&amp;iWhites2012=4&amp;iExposure2012=-.04&amp;iHighlights2012=-4&amp;iContrast2012=-4&amp;ParametricShadowSplit=25&amp;ParametricMidtoneSplit=50&amp;ParametricHighlightSplit=75&amp;ParametricShadows=9&amp;ParametricDarks=-18&amp;ParametricLights=-9&amp;ParametricHighlights=-3">+4</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Shadows2012=100&amp;Blacks2012=25&amp;iWhites2012=8&amp;iExposure2012=-.08&amp;iHighlights2012=-8&amp;iContrast2012=-8&amp;ParametricShadowSplit=25&amp;ParametricMidtoneSplit=50&amp;ParametricHighlightSplit=75&amp;ParametricShadows=12&amp;ParametricDarks=-24&amp;ParametricLights=-12&amp;ParametricHighlights=-4">+8</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Shadows2012=100&amp;Blacks2012=50&amp;iWhites2012=16&amp;iExposure2012=-.16&amp;iHighlights2012=-16&amp;iContrast2012=-16&amp;ParametricShadowSplit=25&amp;ParametricMidtoneSplit=50&amp;ParametricHighlightSplit=75&amp;ParametricShadows=15&amp;ParametricDarks=-30&amp;ParametricLights=-15&amp;ParametricHighlights=-5">+16</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Shadows2012=100&amp;Blacks2012=100&amp;iWhites2012=32&amp;iExposure2012=-.32&amp;iHighlights2012=-32&amp;iContrast2012=-32&amp;ParametricShadowSplit=25&amp;ParametricMidtoneSplit=50&amp;ParametricHighlightSplit=75&amp;ParametricShadows=18&amp;ParametricDarks=-36&amp;ParametricLights=-18&amp;ParametricHighlights=-6">+32</a>   Mix of absolute and relative. Max shadows, with varying amounts of +blacks too, and other (relative) adjustments. Raw or RGB.   For those times when you need more bottom-end oomph than shadow slider alone can provide (without increasing exposure). Won’t overbrighten highlights.</p>
+<p>*** Includes absolute adjustment of parametric tone curve.</p>
+<p>                    Deep Fill, Ultimate To undo it, use Lightroom proper. <a href="lightroom://com.robcole.lightroom.Cookmarks/Blacks2012=100&amp;Shadows2012=100&amp;ParametricShadowSplit=10&amp;ParametricMidtoneSplit=50&amp;ParametricHighlightSplit=90&amp;ParametricShadows=40&amp;ParametricDarks=-40&amp;ParametricLights=-30&amp;ParametricHighlights=-20&amp;iExposure2012=-1&amp;iWhites2012=30&amp;iSaturation=-10&amp;iVibrance=-10&amp;iClarity2012=20&amp;iTemperature=-200&amp;iTint=2">Do It (Raw)</a> Starts with max shadows and max blacks, then mixes in some compensations and tone curve.   Fill deepest tones most - you’ll need to make some adjustments to exposure, contrast, highlights and/or whites afterward, maybe even clarity and color/vib/sat. This can be used to accomplish an effect similar to Lr3 fill-light, in cases when more conventional PV2012 shadow fill techniques ain’t cuttin’ it. Raw files only.         Deep Fill, Ultimate To undo it, use Lightroom proper. <a href="lightroom://com.robcole.lightroom.Cookmarks/Blacks2012=100&amp;Shadows2012=100&amp;ParametricShadowSplit=10&amp;ParametricMidtoneSplit=50&amp;ParametricHighlightSplit=90&amp;ParametricShadows=40&amp;ParametricDarks=-40&amp;ParametricLights=-30&amp;ParametricHighlights=-20&amp;iExposure2012=-1&amp;iWhites2012=30&amp;iSaturation=-10&amp;iVibrance=-10&amp;iClarity2012=20&amp;iIncrementalTemperature=-2&amp;iIncrementalTint=1">Do It (RGB)</a> Ditto, but for RGB files, not raw files. Reduce Shadow Detail To undo it, use Lightroom proper. <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=3&amp;iShadows2012=-3&amp;iHighlights2012=-1&amp;iContrast2012=1&amp;ParametricShadowSplit=10&amp;ParametricMidtoneSplit=50&amp;ParametricHighlightSplit=90&amp;ParametricShadows=-6&amp;ParametricDarks=2&amp;ParametricLights=0&amp;ParametricHighlights=0">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=6&amp;iShadows2012=-6&amp;iHighlights2012=-3&amp;iContrast2012=2&amp;ParametricShadowSplit=10&amp;ParametricMidtoneSplit=50&amp;ParametricHighlightSplit=90&amp;ParametricShadows=-12&amp;ParametricDarks=4&amp;ParametricLights=0&amp;ParametricHighlights=0">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=12&amp;iShadows2012=-12&amp;iHighlights2012=-6&amp;iContrast2012=4&amp;ParametricShadowSplit=10&amp;ParametricMidtoneSplit=50&amp;ParametricHighlightSplit=90&amp;ParametricShadows=-18&amp;ParametricDarks=6&amp;ParametricLights=0&amp;ParametricHighlights=0">+4</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=24&amp;iShadows2012=-24&amp;iHighlights2012=-12&amp;iContrast2012=8&amp;ParametricShadowSplit=10&amp;ParametricMidtoneSplit=50&amp;ParametricHighlightSplit=90&amp;ParametricShadows=-24&amp;ParametricDarks=8&amp;ParametricLights=0&amp;ParametricHighlights=0">+8</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=48&amp;iShadows2012=-48&amp;iHighlights2012=-24&amp;iContrast2012=16&amp;ParametricShadowSplit=10&amp;ParametricMidtoneSplit=50&amp;ParametricHighlightSplit=90&amp;ParametricShadows=-30&amp;ParametricDarks=10&amp;ParametricLights=0&amp;ParametricHighlights=0">+16</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=96&amp;iShadows2012=-96&amp;iHighlights2012=-48&amp;iContrast2012=32&amp;ParametricShadowSplit=10&amp;ParametricMidtoneSplit=50&amp;ParametricHighlightSplit=90&amp;ParametricShadows=-36&amp;ParametricDarks=12&amp;ParametricLights=0&amp;ParametricHighlights=0">+32</a>   Compress shadows, deepest tones most.   Guts of this are +blacks -shadows +contrast -highlights, but:</p>
+<p>*** Includes absolute adjustment of tone curve.</p>
+<p>                    Blacks/Shadows <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-96&amp;iShadows2012=32&amp;iContrast2012=-32&amp;iHighlights2012=64">-32</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-48&amp;iShadows2012=16&amp;iContrast2012=-16&amp;iHighlights2012=32">-16</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-24&amp;iShadows2012=8&amp;iContrast2012=-8&amp;iHighlights2012=16">-8</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-12&amp;iShadows2012=4&amp;iContrast2012=-4&amp;iHighlights2012=8">-4</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-6&amp;iShadows2012=2&amp;iContrast2012=-2&amp;iHighlights2012=4">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-3&amp;iShadows2012=1&amp;iContrast2012=-1&amp;iHighlights2012=2">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=3&amp;iShadows2012=-1&amp;iContrast2012=1&amp;iHighlights2012=-2">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=6&amp;iShadows2012=-2&amp;iContrast2012=2&amp;iHighlights2012=-4">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=12&amp;iShadows2012=-4&amp;iContrast2012=4&amp;iHighlights2012=-8">+4</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=24&amp;iShadows2012=-8&amp;iContrast2012=8&amp;iHighlights2012=-16">+8</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=48&amp;iShadows2012=-16&amp;iContrast2012=16&amp;iHighlights2012=-32">+16</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=96&amp;iShadows2012=-32&amp;iContrast2012=32&amp;iHighlights2012=-64">+32</a>   Switches the balance of fill to use more blacks and less shadows.                               Contrast/Blacks <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-32/iContrast2012=1&amp;iBlacks2012=1&amp;iHighlights2012=-.5&amp;iSaturation=-.2">-32</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-16/iContrast2012=1&amp;iBlacks2012=1&amp;iHighlights2012=-.5&amp;iSaturation=-.2">-16</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-8/iContrast2012=1&amp;iBlacks2012=1&amp;iHighlights2012=-.5&amp;iSaturation=-.2">-8</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-4/iContrast2012=1&amp;iBlacks2012=1&amp;iHighlights2012=-.5&amp;iSaturation=-.2">-4</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-2/iContrast2012=1&amp;iBlacks2012=1&amp;iHighlights2012=-.5&amp;iSaturation=-.2">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-1/iContrast2012=1&amp;iBlacks2012=1&amp;iHighlights2012=-.5&amp;iSaturation=-.2">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/1/iContrast2012=1&amp;iBlacks2012=1&amp;iHighlights2012=-.5&amp;iSaturation=-.2">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/2/iContrast2012=1&amp;iBlacks2012=1&amp;iHighlights2012=-.5&amp;iSaturation=-.2">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/4/iContrast2012=1&amp;iBlacks2012=1&amp;iHighlights2012=-.5&amp;iSaturation=-.2">+4</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/8/iContrast2012=1&amp;iBlacks2012=1&amp;iHighlights2012=-.5&amp;iSaturation=-.2">+8</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/16/iContrast2012=1&amp;iBlacks2012=1&amp;iHighlights2012=-.5&amp;iSaturation=-.2">+16</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/32/iContrast2012=1&amp;iBlacks2012=1&amp;iHighlights2012=-.5&amp;iSaturation=-.2">+32</a>   +contrast(1) +blacks(1) -highlights(.5) -saturation(.2)   Sometimes I use the negative version of this to reduce contrast in favor of pulling the blacks back.                               Brighten &amp; compress highlights <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-64&amp;iShadows2012=32&amp;iContrast2012=-32&amp;iSaturation=16&amp;iHighlights2012=32">-32</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-32&amp;iShadows2012=16&amp;iContrast2012=-16&amp;iSaturation=8&amp;iHighlights2012=16">-16</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-16&amp;iShadows2012=8&amp;iContrast2012=-8&amp;iSaturation=4&amp;iHighlights2012=8">-8</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-8&amp;iShadows2012=4&amp;iContrast2012=-4&amp;iSaturation=2&amp;iHighlights2012=4">-4</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-4&amp;iShadows2012=2&amp;iContrast2012=-2&amp;iSaturation=1&amp;iHighlights2012=2">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=-2&amp;iShadows2012=1&amp;iContrast2012=-1&amp;iSaturation=.5&amp;iHighlights2012=1">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=2&amp;iShadows2012=-1&amp;iContrast2012=1&amp;iSaturation=-.5&amp;iHighlights2012=-1">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=4&amp;iShadows2012=-2&amp;iContrast2012=2&amp;iSaturation=-1&amp;iHighlights2012=-2">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=8&amp;iShadows2012=-4&amp;iContrast2012=4&amp;iSaturation=-2&amp;iHighlights2012=-4">+4</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=16&amp;iShadows2012=-8&amp;iContrast2012=8&amp;iSaturation=-4&amp;iHighlights2012=-8">+8</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=32&amp;iShadows2012=-16&amp;iContrast2012=16&amp;iSaturation=-8&amp;iHighlights2012=-16">+16</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iBlacks2012=64&amp;iShadows2012=-32&amp;iContrast2012=32&amp;iSaturation=-16&amp;iHighlights2012=-32">+32</a>   +blacks(2) -shadows(1) +contrast(1) -saturation(.5) -highlights(1)   In a nutshell: Brightens shadows and midtones, compresses highlights.                               Clarity Light <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-96&amp;iBlacks2012=-32&amp;iHighlights2012=32">-32</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-48&amp;iBlacks2012=-16&amp;iHighlights2012=16">-16</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-24&amp;iBlacks2012=-8&amp;iHighlights2012=8">-8</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-12&amp;iBlacks2012=-4&amp;iHighlights2012=4">-4</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-6&amp;iBlacks2012=-2&amp;iHighlights2012=2">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-3&amp;iBlacks2012=-1&amp;iHighlights2012=1">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=3&amp;iBlacks2012=1&amp;iHighlights2012=-1">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=6&amp;iBlacks2012=2&amp;iHighlights2012=-2">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=12&amp;iBlacks2012=4&amp;iHighlights2012=-4">+4</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=24&amp;iBlacks2012=8&amp;iHighlights2012=-8">+8</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=48&amp;iBlacks2012=16&amp;iHighlights2012=-16">+16</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=96&amp;iBlacks2012=32&amp;iHighlights2012=-32">+32</a>   +clarity(3) +blacks(1) -highlights(1)   Increases clarity, but in a way that keeps from too much darkening. Will brighten photos slightly, but won’t overbrighten highlights.                               Midtone Clarity <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-96&amp;iBlacks2012=-48&amp;iShadows2012=32&amp;iHighlights2012=32&amp;iContrast2012=32">-32</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-48&amp;iBlacks2012=-24&amp;iShadows2012=16&amp;iHighlights2012=16&amp;iContrast2012=16">-16</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-24&amp;iBlacks2012=-12&amp;iShadows2012=8&amp;iHighlights2012=8&amp;iContrast2012=8">-8</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-12&amp;iBlacks2012=-6&amp;iShadows2012=4&amp;iHighlights2012=4&amp;iContrast2012=4">-4</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-6&amp;iBlacks2012=-3&amp;iShadows2012=2&amp;iHighlights2012=2&amp;iContrast2012=2">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=-3&amp;iBlacks2012=-1.5&amp;iShadows2012=1&amp;iHighlights2012=1&amp;iContrast2012=1">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=3&amp;iBlacks2012=1.5&amp;iShadows2012=-1&amp;iHighlights2012=-1&amp;iContrast2012=-1">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=6&amp;iBlacks2012=3&amp;iShadows2012=-2&amp;iHighlights2012=-2&amp;iContrast2012=-2">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=12&amp;iBlacks2012=6&amp;iShadows2012=-4&amp;iHighlights2012=-4&amp;iContrast2012=-4">+4</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=24&amp;iBlacks2012=12&amp;iShadows2012=-8&amp;iHighlights2012=-8&amp;iContrast2012=-8">+8</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=48&amp;iBlacks2012=24&amp;iShadows2012=-16&amp;iHighlights2012=-16&amp;iContrast2012=-16">+16</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity2012=96&amp;iBlacks2012=48&amp;iShadows2012=-32&amp;iHighlights2012=-32&amp;iContrast2012=-32">+32</a>   +clarity(3) +blacks(1.5) -shadows(1) -highlights(1) -contrast(1)   Increases clarity, somewhat confining it’s effect to the midtones.                                                             Midtone Brightness <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.3&amp;iHighlights2012=60&amp;iShadows2012=60">-30</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.1&amp;iHighlights2012=20&amp;iShadows2012=20">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.05&amp;iHighlights2012=10&amp;iShadows2012=10">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.03&amp;iHighlights2012=6&amp;iShadows2012=6">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.02&amp;iHighlights2012=4&amp;iShadows2012=4">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=-.01&amp;iHighlights2012=2&amp;iShadows2012=2">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.01&amp;iHighlights2012=-2&amp;iShadows2012=-2">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.02&amp;iHighlights2012=-4&amp;iShadows2012=-4">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.03&amp;iHighlights2012=-6&amp;iShadows2012=-6">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.05&amp;iHighlights2012=-10&amp;iShadows2012=-10">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.1&amp;iHighlights2012=-20&amp;iShadows2012=-20">+10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure2012=.3&amp;iHighlights2012=-60&amp;iShadows2012=-60">+30</a>   +exposure(.01) -highlights(2) -shadows(2)   I most often use this toward the end of editing, to fine tune the midtone level, without impacting the shadows or highlights too much.                               <a href="#special">Special</a> | <a href="#basics">Basics</a> | <a href="#tone-pv2012">Tone PV2012</a> | <a href="#color">Color</a> | <a href="#blackwhite">Black&amp;White</a> | <a href="#split-toning">Split Toning</a> | <a href="#detail">Detail</a> | <a href="#effects">Effects</a> | <a href="#tonecolor-combos">Tone+Color Combos</a> | <a href="#pv201003">PV2010/03</a></p>
+<h2 id="color"><span class="header-section-number">2.4</span> Color</h2>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 1%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Red Hue</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentRed=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentRed=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentRed=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentRed=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentRed=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentRed=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentRed=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentRed=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentRed=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentRed=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentRed=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentRed=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Orange Hue</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentOrange=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentOrange=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentOrange=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentOrange=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentOrange=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentOrange=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentOrange=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentOrange=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentOrange=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentOrange=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentOrange=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentOrange=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Yellow Hue</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentYellow=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentYellow=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentYellow=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentYellow=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentYellow=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentYellow=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentYellow=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentYellow=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentYellow=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentYellow=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentYellow=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentYellow=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Green Hue</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentGreen=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentGreen=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentGreen=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentGreen=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentGreen=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentGreen=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentGreen=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentGreen=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentGreen=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentGreen=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentGreen=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentGreen=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Aqua Hue</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentAqua=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentAqua=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentAqua=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentAqua=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentAqua=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentAqua=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentAqua=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentAqua=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentAqua=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentAqua=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentAqua=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentAqua=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Blue Hue</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentBlue=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentBlue=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentBlue=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentBlue=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentBlue=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentBlue=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentBlue=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentBlue=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentBlue=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentBlue=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentBlue=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentBlue=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Purple Hue</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentPurple=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentPurple=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentPurple=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentPurple=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentPurple=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentPurple=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentPurple=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentPurple=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentPurple=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentPurple=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentPurple=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentPurple=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Magenta Hue</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentMagenta=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentMagenta=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentMagenta=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentMagenta=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentMagenta=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentMagenta=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentMagenta=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentMagenta=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentMagenta=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentMagenta=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentMagenta=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHueAdjustmentMagenta=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Red Sat</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentRed=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentRed=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentRed=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentRed=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentRed=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentRed=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentRed=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentRed=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentRed=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentRed=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentRed=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentRed=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Orange Sat</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentOrange=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentOrange=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentOrange=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentOrange=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentOrange=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentOrange=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentOrange=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentOrange=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentOrange=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentOrange=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentOrange=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentOrange=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Yellow Sat</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentYellow=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentYellow=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentYellow=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentYellow=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentYellow=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentYellow=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentYellow=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentYellow=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentYellow=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentYellow=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentYellow=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentYellow=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Green Sat</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentGreen=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentGreen=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentGreen=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentGreen=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentGreen=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentGreen=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentGreen=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentGreen=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentGreen=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentGreen=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentGreen=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentGreen=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Aqua Sat</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentAqua=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentAqua=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentAqua=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentAqua=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentAqua=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentAqua=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentAqua=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentAqua=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentAqua=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentAqua=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentAqua=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentAqua=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Blue Sat</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Purple Sat</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentPurple=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentPurple=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentPurple=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentPurple=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentPurple=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentPurple=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentPurple=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentPurple=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentPurple=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentPurple=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentPurple=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentPurple=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Magenta Sat</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentMagenta=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentMagenta=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentMagenta=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentMagenta=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentMagenta=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentMagenta=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentMagenta=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentMagenta=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentMagenta=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentMagenta=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentMagenta=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentMagenta=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="even">
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Red Lum</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentRed=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentRed=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentRed=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentRed=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentRed=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentRed=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentRed=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentRed=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentRed=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentRed=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentRed=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentRed=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Orange Lum</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentOrange=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentOrange=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentOrange=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentOrange=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentOrange=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentOrange=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentOrange=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentOrange=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentOrange=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentOrange=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentOrange=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentOrange=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Yellow Lum</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentYellow=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentYellow=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentYellow=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentYellow=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentYellow=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentYellow=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentYellow=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentYellow=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentYellow=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentYellow=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentYellow=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentYellow=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Green Lum</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentGreen=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentGreen=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentGreen=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentGreen=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentGreen=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentGreen=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentGreen=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentGreen=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentGreen=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentGreen=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentGreen=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentGreen=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Aqua Lum</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentAqua=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentAqua=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentAqua=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentAqua=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentAqua=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentAqua=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentAqua=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentAqua=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentAqua=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentAqua=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentAqua=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentAqua=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Blue Lum</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentBlue=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentBlue=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentBlue=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentBlue=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentBlue=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentBlue=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentBlue=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentBlue=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentBlue=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentBlue=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentBlue=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentBlue=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Purple Lum</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentPurple=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentPurple=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentPurple=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentPurple=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentPurple=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentPurple=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentPurple=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentPurple=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentPurple=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentPurple=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentPurple=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentPurple=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Magenta Lum</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentMagenta=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentMagenta=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentMagenta=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentMagenta=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentMagenta=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentMagenta=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentMagenta=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentMagenta=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentMagenta=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentMagenta=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentMagenta=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceAdjustmentMagenta=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Brighten Blue Sky</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=-30&amp;iLuminanceAdjustmentBlue=-1">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=-10&amp;iLuminanceAdjustmentBlue=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=-5&amp;iLuminanceAdjustmentBlue=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=-3&amp;iLuminanceAdjustmentBlue=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=-2&amp;iLuminanceAdjustmentBlue=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=-1&amp;iLuminanceAdjustmentBlue=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=1&amp;iLuminanceAdjustmentBlue=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=2&amp;iLuminanceAdjustmentBlue=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=3&amp;iLuminanceAdjustmentBlue=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=5&amp;iLuminanceAdjustmentBlue=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=10&amp;iLuminanceAdjustmentBlue=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSaturationAdjustmentBlue=30&amp;iLuminanceAdjustmentBlue=30">+30</a></td>
+<td>Without desaturating too much. Warning: affects *all* blues, not just sky.</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#special">Special</a> | <a href="#basics">Basics</a> | <a href="#tone-pv2012">Tone PV2012</a> | <a href="#color">Color</a> | <a href="#blackwhite">Black&amp;White</a> | <a href="#split-toning">Split Toning</a> | <a href="#detail">Detail</a> | <a href="#effects">Effects</a> | <a href="#tonecolor-combos">Tone+Color Combos</a> | <a href="#pv201003">PV2010/03</a></p>
+<h2 id="blackwhite"><span class="header-section-number">2.5</span> Black&amp;White</h2>
+<p>Black&amp;White <a href="lightroom://com.robcole.lightroom.Cookmarks/ConvertToGrayscale=false">Colored</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/ConvertToGrayscale=true">Black&amp;White</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/AutoGrayscaleMix=true">Automix</a> Automix requires Black&amp;White first.         Red <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerRed=-30">-30</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerRed=-10">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerRed=-5">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerRed=-3">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerRed=-2">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerRed=-1">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerRed=1">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerRed=2">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerRed=3">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerRed=5">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerRed=10">+10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerRed=30">+30</a>   Orange <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerOrange=-30">-30</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerOrange=-10">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerOrange=-5">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerOrange=-3">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerOrange=-2">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerOrange=-1">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerOrange=1">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerOrange=2">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerOrange=3">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerOrange=5">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerOrange=10">+10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerOrange=30">+30</a>   Yellow <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerYellow=-30">-30</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerYellow=-10">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerYellow=-5">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerYellow=-3">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerYellow=-2">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerYellow=-1">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerYellow=1">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerYellow=2">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerYellow=3">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerYellow=5">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerYellow=10">+10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerYellow=30">+30</a>   Green <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerGreen=-30">-30</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerGreen=-10">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerGreen=-5">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerGreen=-3">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerGreen=-2">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerGreen=-1">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerGreen=1">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerGreen=2">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerGreen=3">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerGreen=5">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerGreen=10">+10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerGreen=30">+30</a>   Aqua <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerAqua=-30">-30</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerAqua=-10">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerAqua=-5">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerAqua=-3">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerAqua=-2">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerAqua=-1">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerAqua=1">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerAqua=2">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerAqua=3">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerAqua=5">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerAqua=10">+10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerAqua=30">+30</a>   Blue <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerBlue=-30">-30</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerBlue=-10">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerBlue=-5">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerBlue=-3">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerBlue=-2">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerBlue=-1">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerBlue=1">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerBlue=2">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerBlue=3">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerBlue=5">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerBlue=10">+10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerBlue=30">+30</a>   Purple <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerPurple=-30">-30</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerPurple=-10">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerPurple=-5">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerPurple=-3">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerPurple=-2">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerPurple=-1">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerPurple=1">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerPurple=2">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerPurple=3">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerPurple=5">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerPurple=10">+10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerPurple=30">+30</a>   Magenta <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerMagenta=-30">-30</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerMagenta=-10">-10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerMagenta=-5">-5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerMagenta=-3">-3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerMagenta=-2">-2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerMagenta=-1">-1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerMagenta=1">+1</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerMagenta=2">+2</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerMagenta=3">+3</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerMagenta=5">+5</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerMagenta=10">+10</a> <a href="lightroom://com.robcole.lightroom.Cookmarks/iGrayMixerMagenta=30">+30</a>    </p>
+<p><a href="#special">Special</a> | <a href="#basics">Basics</a> | <a href="#tone-pv2012">Tone PV2012</a> | <a href="#color">Color</a> | <a href="#blackwhite">Black&amp;White</a> | <a href="#split-toning">Split Toning</a> | <a href="#detail">Detail</a> | <a href="#effects">Effects</a> | <a href="#tonecolor-combos">Tone+Color Combos</a> | <a href="#pv201003">PV2010/03</a></p>
+<h2 id="split-toning"><span class="header-section-number">2.6</span> Split Toning</h2>
+<table>
+<tbody>
+<tr class="odd">
+<td>Highlight Hue</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightHue=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightHue=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightHue=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightHue=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightHue=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightHue=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightHue=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightHue=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightHue=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightHue=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightHue=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightHue=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Highlight Sat</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightSaturation=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightSaturation=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightSaturation=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightSaturation=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightSaturation=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightSaturation=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightSaturation=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightSaturation=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightSaturation=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightSaturation=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightSaturation=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningHighlightSaturation=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Balance</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningBalance=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningBalance=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningBalance=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningBalance=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningBalance=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningBalance=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningBalance=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningBalance=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningBalance=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningBalance=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningBalance=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningBalance=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Shadow Hue</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowHue=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowHue=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowHue=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowHue=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowHue=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowHue=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowHue=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowHue=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowHue=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowHue=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowHue=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowHue=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Shadow Sat</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowSaturation=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowSaturation=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowSaturation=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowSaturation=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowSaturation=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowSaturation=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowSaturation=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowSaturation=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowSaturation=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowSaturation=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowSaturation=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSplitToningShadowSaturation=30">+30</a></td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p><a href="#special">Special</a> | <a href="#basics">Basics</a> | <a href="#tone-pv2012">Tone PV2012</a> | <a href="#color">Color</a> | <a href="#blackwhite">Black&amp;White</a> | <a href="#split-toning">Split Toning</a> | <a href="#detail">Detail</a> | <a href="#effects">Effects</a> | <a href="#tonecolor-combos">Tone+Color Combos</a> | <a href="#pv201003">PV2010/03</a></p>
+<h2 id="detail"><span class="header-section-number">2.7</span> Detail</h2>
+<p><em>Singles</em></p>
+<table>
+<colgroup>
+<col style="width: 2%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 3%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Sharpness</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=+1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=+2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=+3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=+5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=+10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=+30">+30</a></td>
+<td>Sharpening Amount</td>
+</tr>
+<tr class="even">
+<td>Radius</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenRadius=-3">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenRadius=-1">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenRadius=-.5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenRadius=-.3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenRadius=-.2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenRadius=-.1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenRadius=+.1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenRadius=+.2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenRadius=+.3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenRadius=+.5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenRadius=+1">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenRadius=+3">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Detail</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenDetail=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenDetail=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenDetail=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenDetail=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenDetail=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenDetail=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenDetail=+1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenDetail=+2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenDetail=+3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenDetail=+5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenDetail=+10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenDetail=+30">+30</a></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Masking</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenEdgeMasking=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenEdgeMasking=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenEdgeMasking=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenEdgeMasking=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenEdgeMasking=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenEdgeMasking=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenEdgeMasking=+1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenEdgeMasking=+2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenEdgeMasking=+3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenEdgeMasking=+5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenEdgeMasking=+10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpenEdgeMasking=+30">+30</a></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Luminance Noise Reduction</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceSmoothing=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceSmoothing=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceSmoothing=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceSmoothing=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceSmoothing=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceSmoothing=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceSmoothing=+1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceSmoothing=+2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceSmoothing=+3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceSmoothing=+5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceSmoothing=+10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceSmoothing=+30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Detail preservation</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionDetail=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionDetail=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionDetail=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionDetail=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionDetail=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionDetail=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionDetail=+1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionDetail=+2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionDetail=+3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionDetail=+5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionDetail=+10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionDetail=+30">+30</a></td>
+<td>Reminder: Lr default base is 50.</td>
+</tr>
+<tr class="even">
+<td>Contrast enhancement</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionContrast=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionContrast=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionContrast=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionContrast=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionContrast=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionContrast=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionContrast=+1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionContrast=+2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionContrast=+3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionContrast=+5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionContrast=+10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iLuminanceNoiseReductionContrast=+30">+30</a></td>
+<td>Reminder: default base is 0.</td>
+</tr>
+<tr class="odd">
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Color Noise Reduction</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReduction=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReduction=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReduction=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReduction=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReduction=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReduction=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReduction=+1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReduction=+2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReduction=+3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReduction=+5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReduction=+10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReduction=+30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Detail preservation</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReductionDetail=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReductionDetail=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReductionDetail=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReductionDetail=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReductionDetail=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReductionDetail=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReductionDetail=+1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReductionDetail=+2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReductionDetail=+3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReductionDetail=+5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReductionDetail=+10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iColorNoiseReductionDetail=+30">+30</a></td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<p><em>Combos</em></p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 2%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 3%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Sharpen with less Detail and Masking</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=-30&amp;iSharpenDetail=30&amp;iSharpenEdgeMasking=30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=-10&amp;iSharpenDetail=10&amp;iSharpenEdgeMasking=10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=-5&amp;iSharpenDetail=5&amp;iSharpenEdgeMasking=5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=-3&amp;iSharpenDetail=3&amp;iSharpenEdgeMasking=3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=-2&amp;iSharpenDetail=2&amp;iSharpenEdgeMasking=2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=-1&amp;iSharpenDetail=1&amp;iSharpenEdgeMasking=1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=+1&amp;iSharpenDetail=-1&amp;iSharpenEdgeMasking=-1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=+2&amp;iSharpenDetail=-2&amp;iSharpenEdgeMasking=-2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=+3&amp;iSharpenDetail=-3&amp;iSharpenEdgeMasking=-3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=+5&amp;iSharpenDetail=-5&amp;iSharpenEdgeMasking=-1">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=+10&amp;iSharpenDetail=-10&amp;iSharpenEdgeMasking=-10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iSharpness=+30&amp;iSharpenDetail=-30&amp;iSharpenEdgeMasking=-30">+30</a></td>
+<td>Net result will be slight increase in sharpening.</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p><a href="#special">Special</a> | <a href="#basics">Basics</a> | <a href="#tone-pv2012">Tone PV2012</a> | <a href="#color">Color</a> | <a href="#blackwhite">Black&amp;White</a> | <a href="#split-toning">Split Toning</a> | <a href="#detail">Detail</a> | <a href="#effects">Effects</a> | <a href="#tonecolor-combos">Tone+Color Combos</a> | <a href="#pv201003">PV2010/03</a></p>
+<h2 id="effects"><span class="header-section-number">2.8</span> Effects</h2>
+<p><em>Post-crop vignette</em></p>
+<table>
+<tbody>
+<tr class="odd">
+<td>Amount</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteAmount=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteAmount=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteAmount=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteAmount=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteAmount=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteAmount=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteAmount=+1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteAmount=+2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteAmount=+3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteAmount=+5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteAmount=+10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteAmount=+30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Midpoint</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteMidpoint=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteMidpoint=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteMidpoint=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteMidpoint=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteMidpoint=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteMidpoint=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteMidpoint=+1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteMidpoint=+2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteMidpoint=+3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteMidpoint=+5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteMidpoint=+10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteMidpoint=+30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Roundness</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteRoundness=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteRoundness=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteRoundness=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteRoundness=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteRoundness=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteRoundness=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteRoundness=+1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteRoundness=+2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteRoundness=+3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteRoundness=+5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteRoundness=+10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteRoundness=+30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Feather</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteFeather=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteFeather=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteFeather=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteFeather=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteFeather=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteFeather=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteFeather=+1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteFeather=+2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteFeather=+3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteFeather=+5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteFeather=+10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteFeather=+30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Highlights</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteHighlightContrast=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteHighlightContrast=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteHighlightContrast=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteHighlightContrast=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteHighlightContrast=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteHighlightContrast=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteHighlightContrast=+1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteHighlightContrast=+2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteHighlightContrast=+3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteHighlightContrast=+5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteHighlightContrast=+10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iPostCropVignetteHighlightContrast=+30">+30</a></td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<p><em>Grain</em></p>
+<table>
+<tbody>
+<tr class="odd">
+<td>Amount</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainAmount=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainAmount=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainAmount=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainAmount=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainAmount=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainAmount=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainAmount=+1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainAmount=+2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainAmount=+3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainAmount=+5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainAmount=+10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainAmount=+30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Size</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainSize=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainSize=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainSize=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainSize=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainSize=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainSize=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainSize=+1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainSize=+2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainSize=+3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainSize=+5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainSize=+10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainSize=+30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Roughness</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainFrequency=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainFrequency=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainFrequency=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainFrequency=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainFrequency=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainFrequency=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainFrequency=+1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainFrequency=+2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainFrequency=+3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainFrequency=+5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainFrequency=+10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iGrainFrequency=+30">+30</a></td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p><a href="#special">Special</a> | <a href="#basics">Basics</a> | <a href="#tone-pv2012">Tone PV2012</a> | <a href="#color">Color</a> | <a href="#blackwhite">Black&amp;White</a> | <a href="#split-toning">Split Toning</a> | <a href="#detail">Detail</a> | <a href="#effects">Effects</a> | <a href="#tonecolor-combos">Tone+Color Combos</a> | <a href="#pv201003">PV2010/03</a></p>
+<h2 id="tonecolor-combos"><span class="header-section-number">2.9</span> Tone+Color Combos</h2>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 1%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 4%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Punch (PV2012) Normal</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-30&amp;iExposure2012=.15&amp;iContrast2012=-30&amp;iClarity2012=-30&amp;iHighlights2012=30&amp;iShadows2012=-30&amp;iVibrance=-20&amp;iSaturation=-10">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-10&amp;iExposure2012=.05&amp;iContrast2012=-10&amp;iClarity2012=-10&amp;iHighlights2012=10&amp;iShadows2012=-10&amp;iVibrance=-7&amp;iSaturation=-3">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-5&amp;iExposure2012=.025&amp;iContrast2012=-5&amp;iClarity2012=-5&amp;iHighlights2012=5&amp;iShadows2012=-5&amp;iVibrance=-3&amp;iSaturation=-2">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-3&amp;iExposure2012=.015&amp;iContrast2012=-3&amp;iClarity2012=-3&amp;iHighlights2012=3&amp;iShadows2012=-3&amp;iVibrance=-2&amp;iSaturation=-1">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-2&amp;iExposure2012=.01&amp;iContrast2012=-2&amp;iClarity2012=-2&amp;iHighlights2012=2&amp;iShadows2012=-2&amp;iVibrance=-1&amp;iSaturation=0">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=-1&amp;iExposure2012=.005&amp;iContrast2012=-1&amp;iClarity2012=-1&amp;iHighlights2012=1&amp;iShadows2012=-1&amp;iVibrance=0&amp;iSaturation=0">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=1&amp;iExposure2012=-.005&amp;iContrast2012=1&amp;iClarity2012=1&amp;iHighlights2012=-1&amp;iShadows2012=1&amp;iVibrance=0&amp;iSaturation=0">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=2&amp;iExposure2012=-.01&amp;iContrast2012=2&amp;iClarity2012=2&amp;iHighlights2012=-2&amp;iShadows2012=2&amp;iVibrance=1&amp;iSaturation=0">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=3&amp;iExposure2012=-.015&amp;iContrast2012=3&amp;iClarity2012=3&amp;iHighlights2012=-3&amp;iShadows2012=3&amp;iVibrance=2&amp;iSaturation=1">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=5&amp;iExposure2012=-.025&amp;iContrast2012=5&amp;iClarity2012=5&amp;iHighlights2012=-5&amp;iShadows2012=5&amp;iVibrance=3&amp;iSaturation=2">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=10&amp;iExposure2012=-.05&amp;iContrast2012=10&amp;iClarity2012=10&amp;iHighlights2012=-10&amp;iShadows2012=10&amp;iVibrance=7&amp;iSaturation=3">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iWhites2012=30&amp;iExposure2012=-.15&amp;iContrast2012=30&amp;iClarity2012=30&amp;iHighlights2012=-30&amp;iShadows2012=30&amp;iVibrance=20&amp;iSaturation=10">+30</a></td>
+<td>Make more contrasty and saturated… - PV2012 only. Includes a good dose of +whites (w/ -exposure compensation).</td>
+</tr>
+<tr class="even">
+<td>Punch (PV2012) for Autotoned Images</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-30/iWhites2012=.333&amp;iExposure2012=-.00333&amp;iContrast2012=1&amp;iClarity2012=1&amp;iHighlights2012=-1&amp;iShadows2012=1&amp;iVibrance=.666&amp;iSaturation=.333">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-10/iWhites2012=.333&amp;iExposure2012=-.00333&amp;iContrast2012=1&amp;iClarity2012=1&amp;iHighlights2012=-1&amp;iShadows2012=1&amp;iVibrance=.666&amp;iSaturation=.333">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-5/iWhites2012=.333&amp;iExposure2012=-.00333&amp;iContrast2012=1&amp;iClarity2012=1&amp;iHighlights2012=-1&amp;iShadows2012=1&amp;iVibrance=.666&amp;iSaturation=.333">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-3/iWhites2012=.333&amp;iExposure2012=-.00333&amp;iContrast2012=1&amp;iClarity2012=1&amp;iHighlights2012=-1&amp;iShadows2012=1&amp;iVibrance=.666&amp;iSaturation=.333">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-2/iWhites2012=.333&amp;iExposure2012=-.00333&amp;iContrast2012=1&amp;iClarity2012=1&amp;iHighlights2012=-1&amp;iShadows2012=1&amp;iVibrance=.666&amp;iSaturation=.333">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/-1/iWhites2012=.333&amp;iExposure2012=-.00333&amp;iContrast2012=1&amp;iClarity2012=1&amp;iHighlights2012=-1&amp;iShadows2012=1&amp;iVibrance=.666&amp;iSaturation=.333">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/1/iWhites2012=.333&amp;iExposure2012=-.00333&amp;iContrast2012=1&amp;iClarity2012=1&amp;iHighlights2012=-1&amp;iShadows2012=1&amp;iVibrance=.666&amp;iSaturation=.333">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/2/iWhites2012=.333&amp;iExposure2012=-.00333&amp;iContrast2012=1&amp;iClarity2012=1&amp;iHighlights2012=-1&amp;iShadows2012=1&amp;iVibrance=.666&amp;iSaturation=.333">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/3/iWhites2012=.333&amp;iExposure2012=-.00333&amp;iContrast2012=1&amp;iClarity2012=1&amp;iHighlights2012=-1&amp;iShadows2012=1&amp;iVibrance=.666&amp;iSaturation=.333">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/5/iWhites2012=.333&amp;iExposure2012=-.00333&amp;iContrast2012=1&amp;iClarity2012=1&amp;iHighlights2012=-1&amp;iShadows2012=1&amp;iVibrance=.666&amp;iSaturation=.333">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/10/iWhites2012=.333&amp;iExposure2012=-.00333&amp;iContrast2012=1&amp;iClarity2012=1&amp;iHighlights2012=-1&amp;iShadows2012=1&amp;iVibrance=.666&amp;iSaturation=.333">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/Mult/30/iWhites2012=.333&amp;iExposure2012=-.00333&amp;iContrast2012=1&amp;iClarity2012=1&amp;iHighlights2012=-1&amp;iShadows2012=1&amp;iVibrance=.666&amp;iSaturation=.333">+30</a></td>
+<td>Ditto, except reduced +whites, since auto-toning already provides a good dose.</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p><a href="#special">Special</a> | <a href="#basics">Basics</a> | <a href="#tone-pv2012">Tone PV2012</a> | <a href="#color">Color</a> | <a href="#blackwhite">Black&amp;White</a> | <a href="#split-toning">Split Toning</a> | <a href="#detail">Detail</a> | <a href="#effects">Effects</a> | <a href="#tonecolor-combos">Tone+Color Combos</a> | <a href="#pv201003">PV2010/03</a></p>
+<h2 id="pv201003"><span class="header-section-number">2.10</span> PV2010/03</h2>
+<table>
+<tbody>
+<tr class="odd">
+<td>Exposure</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iExposure=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Recovery</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlightRecovery=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlightRecovery=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlightRecovery=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlightRecovery=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlightRecovery=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlightRecovery=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlightRecovery=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlightRecovery=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlightRecovery=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlightRecovery=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlightRecovery=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iHighlightRecovery=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Fill Light</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iFillLight=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iFillLight=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iFillLight=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iFillLight=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iFillLight=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iFillLight=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iFillLight=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iFillLight=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iFillLight=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iFillLight=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iFillLight=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iFillLight=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Blacks</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iShadows=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="even">
+<td>Brightness</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBrightness=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBrightness=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBrightness=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBrightness=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBrightness=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBrightness=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBrightness=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBrightness=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBrightness=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBrightness=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBrightness=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iBrightness=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Contrast</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iContrast=30">+30</a></td>
+<td> </td>
+</tr>
+<tr class="even">
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+<tr class="odd">
+<td>Clarity</td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity=-30">-30</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity=-10">-10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity=-5">-5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity=-3">-3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity=-2">-2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity=-1">-1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity=1">+1</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity=2">+2</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity=3">+3</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity=5">+5</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity=10">+10</a></td>
+<td><a href="lightroom://com.robcole.lightroom.Cookmarks/iClarity=30">+30</a></td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p><a href="#special">Special</a> | <a href="#basics">Basics</a> | <a href="#tone-pv2012">Tone PV2012</a> | <a href="#color">Color</a> | <a href="#blackwhite">Black&amp;White</a> | <a href="#split-toning">Split Toning</a> | <a href="#detail">Detail</a> | <a href="#effects">Effects</a> | <a href="#tonecolor-combos">Tone+Color Combos</a> | <a href="#pv201003">PV2010/03</a></p>
+<h1 id="cookmarks-revision-history"><span class="header-section-number">3</span> Cookmarks Revision History</h1>
+<p><strong>(reverse chronological order)</strong></p>
+<h2 id="version-2.1-released-2012-07-31"><span class="header-section-number">3.1</span> Version 2.1, released 2012-07-31</h2>
+<ul>
+<li>Added percent auto-toning, in case you just want to go part of the way from where you are to where auto-toning would take you…</li>
+</ul>
+<h2 id="version-2.0-released-2012-05-04"><span class="header-section-number">3.2</span> Version 2.0, released 2012-05-04</h2>
+<ul>
+<li>Extended syntax of URL to allow multiple sections, and added Mult section, for setting multiplier.</li>
+</ul>
+<h2 id="version-1.3-released-2012-05-02"><span class="header-section-number">3.3</span> Version 1.3, released 2012-05-02</h2>
+<ul>
+<li>Added ‘Try It’ button and a multiplier field to URL generator form so you can test URL (at extra strength) without pasting in browser.</li>
+</ul>
+<h2 id="version-1.2-released-2012-05-01"><span class="header-section-number">3.4</span> Version 1.2, released 2012-05-01</h2>
+<ul>
+<li>Improved cookmarks URL generator by organizing the adjustment items into the same groups as they are in Lightroom proper.</li>
+</ul>
+<h2 id="version-1.1-released-2012-04-30"><span class="header-section-number">3.5</span> Version 1.1, released 2012-04-30</h2>
+<ul>
+<li>Fixed potential compatibility problem with Lr4 RC2, and certified it for compatibility with Lr4.</li>
+</ul>
+<h2 id="version-1.0-released-2012-03-26"><span class="header-section-number">3.6</span> Version 1.0, released 2012-03-26</h2>
+<ul>
+<li>Initial release.</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,24 @@
+--[[
+        Plugin configuration file (aka 'Advanced Settings').
+        
+        Note: Named members of return table are accessible in source code as:
+        
+            app:getPref( name )
+            
+            provided there is no app:initPref( name, val ) or app:setPref( name, val ) statements executed prior,
+            which hide/override the named members in this file.
+--]]
+
+-- declare return table
+local _t = {}
+
+
+_t.settlingTimePerOp = 3 -- settling time per *pre-requesite* operation - very conservatively set to 3 seconds by default. Do set this to 1 (or less) if white balance = custom
+-- or lens profile enable pre-requisites do not need so much settling time.
+-- also, consider setting white balance to custom, and enabling lens profile corrections upon import or conversion, to avoid this settling delay altogether - highly recommended.
+
+_t.includeCookmarksPrefix = false -- in edit-history. Set to true to include prefix with cookmarks ID and date-timestamp.
+
+
+-- return config table
+return _t
