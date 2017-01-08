@@ -1,9 +1,9 @@
-Since the death of <RobCole.com>, many who uses Rob Cole's Lightroom plugin cannot access the tools he created. Since his license allows us to redistribute his code, let's share his legacy.
+Since the death of RobCole.com, many who uses Rob Cole's Lightroom plugin cannot access the tools he created. Since his license allows us to redistribute his code, let's share his legacy.
 
 # Contents
 
 - `Cookmarks.lrplugin`
-- `archive/`: a copy of <http://www.robcole.com/Rob/ProductsAndServices/CookmarksLrPlugin/> from <archive.org>.
+- `archive/`: a copy of <http://www.robcole.com/Rob/ProductsAndServices/CookmarksLrPlugin/> from archive.org.
 - `docs/` a cleanup of the above copy in markdown using pandoc.
 
 # Todo
